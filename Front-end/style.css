@@ -1,0 +1,110 @@
+/* Mengatur style untuk seluruh halaman di dalam body */
+body {
+
+    /* Menggunakan Flexbox untuk mengatur posisi elemen */
+    display: flex;
+
+    /* seluruh elemen di dalam body akan ke tengah secara horizontal */
+    justify-content: center;
+
+    /* Posisi vertikal ke tengah */
+    align-items: center;
+
+    /* Tinggi body = 100% menyesuaikan ukuran layar browser */
+    height: 100vh;
+
+    /* Warna background halaman  bisa ditukar*/
+    background: #ffffff;
+
+    /* Font utama halaman */
+    font-family: Arial, sans-serif;
+}
+
+
+/* Style untuk kotak kalkulator (yang ada tulisan div  class calculator) */
+.calculator {
+
+    /* Warna background kalkulator */
+    background: white;
+
+    /* Jarak isi kalkulator ke bordernya*/
+    padding: 30px;
+
+    /* supaya sudut kalkulator bulat */
+    border-radius: 10px;
+
+    /* Memberi  efek bayangan di belakang kalkulator */
+    /* rgba = red, green, blue, alpha(opacity) */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+
+/* Style untuk display/input kalkulator, display itu bagian di atas tombol yang kayak kalkulator biasa */
+#display {
+
+    /* Lebar penuh mengikuti parent */
+    width: 100%;
+
+    /* Tinggi input */
+    height: 80px;
+
+    /* Ukuran teks */
+    font-size: 24px;
+
+    /* Jarak bawah */
+    margin-bottom: 10px;
+
+    /* Posisi teks di kiri */
+    text-align: left;
+
+    /* Jarak teks dari sisi kanan */
+    padding-right: 10px;
+
+    /* Padding dihitung ke dalam width */
+    box-sizing: border-box;
+}
+
+
+/* Container tombol (ini div class buttons) */
+.buttons {
+
+    /* Menggunakan CSS Grid */
+    display: grid;
+
+    /* Membuat 4 kolom masing-masing 60px */
+    grid-template-columns: repeat(4, 60px);
+
+    /* Jarak antar tombol */
+    gap: 20px;
+}
+
+
+/* Style semua tombol (ini button on click....)*/
+button {
+
+    /* Tinggi tombol */
+    height: 50px;
+
+    /* Ukuran teks tombol */
+    font-size: 20px;
+
+    /* Cursor berubah jadi tangan saat diarahkan */
+    cursor: pointer;
+
+    /* Menghilangkan border default */
+    border: none;
+
+    /* Warna tombol */
+    background: #46a50f;
+
+    /* Membulatkan sudut tombol */
+    border-radius: 5px;
+}
+
+
+/* Efek saat mouse diarahkan ke tombol(biar kursor mousenya berubah jadi bentuk tangan) */
+button:hover {
+
+    /* Warna berubah saat hover */
+    background: #bbb;
+}
