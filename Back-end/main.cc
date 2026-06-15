@@ -373,11 +373,24 @@ p.score = ns;
 //  MAIN
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 int main() {
-    app().setLogPath("./")
-         .setLogLevel(trantor::Logger::kWarn)
-         .addListener("0.0.0.0", 8080)
-         .setThreadNum(4)
-         .enableServerHeader(false)
-         .run();
+    drogon::app()
+        .setLogPath("./")
+        .setLogLevel(trantor::Logger::kWarn)
+        .addListener("0.0.0.0", 8080)
+        .setThreadNum(4)
+        .enableServerHeader(false);
+
+    drogon::app().registerHandler(
+        "/",
+        [](const drogon::HttpRequestPtr&,
+           std::function<void(const drogon::HttpResponsePtr&)>&& callback)
+        {
+            auto resp = drogon::HttpResponse::newFileResponse(
+                "anonsay_frontend.html"
+            );
+            callback(resp);
+        });
+
+    drogon::app().run();
     return 0;
 }
