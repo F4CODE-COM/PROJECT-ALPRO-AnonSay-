@@ -4,12 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AnonSay</title>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- CSS eksternal -->
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -55,7 +52,7 @@
   </div>
 </div>
 
-<!-- Modal: Buat Room -->
+<!-- Modal Buat Room -->
 <div class="modal-overlay" id="modal-buat">
   <div class="modal-box">
     <h2 id="modal-buat-title">Buat Room AnonVote</h2>
@@ -64,6 +61,7 @@
     <p class="modal-note">Hanya 5 karakter, huruf/angka. Kode bisa sama antar fitur berbeda.</p>
     <label>Deskripsi / Judul</label>
     <textarea id="buat-desc" placeholder="Apa yang akan di-vote/dibahas?"></textarea>
+
     <!-- Vote-specific fields -->
     <div id="vote-extra" style="display:none">
       <label>Jumlah Objek Vote (2–6)</label>
@@ -75,6 +73,7 @@
         <option value="1">Ya (semua bisa melihat)</option>
       </select>
     </div>
+
     <label>Durasi Room</label>
     <select id="buat-durasi">
       <option value="5">5 Menit</option>
@@ -90,7 +89,7 @@
   </div>
 </div>
 
-<!-- Modal: Masuk Room -->
+<!-- Modal Masuk Room -->
 <div class="modal-overlay" id="modal-masuk">
   <div class="modal-box">
     <h2>Masuk ke Room</h2>
@@ -110,7 +109,7 @@
     <p>Menghitung hasil voting…</p>
   </div>
   <div class="sidebar" id="sb-anonvote">
-    <div class="sidebar-close" onclick="closeSidebar('anonvote')">&#10005;</div>
+    <div class="sidebar-close" onclick="closeSidebar('anonvote')">✕</div>
     <nav>
       <a onclick="backToHome()">HOME</a>
       <a onclick="switchFitur('anonvote')" class="active">AnonVote</a>
@@ -122,19 +121,20 @@
     <div class="room-closed-banner" id="vclosed-banner">Room telah ditutup. Hasil final ditampilkan di bawah.</div>
     <div class="room-info-badge">Room: <span class="room-code-badge">-</span></div>
     <div class="timer-badge" id="vtimer">--:--</div>
-    <div class="hamburger" onclick="openSidebar('anonvote')">
-      <div class="hamburger-btn"><span></span><span></span><span></span></div>
-    </div>
+    <div class="hamburger" onclick="openSidebar('anonvote')"><div class="hamburger-btn"><span></span><span></span><span></span></div></div>
     <div class="vote-header">
       <div class="section-title" id="vote-title-text">AnonVote</div>
       <div class="vote-desc" id="vote-desc-text"></div>
     </div>
+    <!-- Bar chart (default admin during voting) -->
     <div class="bar-chart-area" id="bar-chart-area"></div>
+    <!-- Final pie/bar chart (Chart.js) shown after voting ends -->
     <div class="chart-wrapper" id="chart-wrapper" style="display:none">
       <canvas id="result-chart"></canvas>
     </div>
     <div class="vote-btns-row" id="vote-btns-row"></div>
-    <div class="voted-notice" id="voted-notice" style="display:none">&#10004; Kamu sudah memberikan suara.</div>
+    <div class="voted-notice" id="voted-notice" style="display:none">✔ Kamu sudah memberikan suara.</div>
+    <!-- Admin early close -->
     <div style="text-align:center;padding:.5rem 0 1rem;position:relative;z-index:2;" id="admin-close-btn-wrap" class="result-only-admin">
       <button class="btn-sm-outline" onclick="closeVoteEarly()">Tutup Voting Sekarang</button>
     </div>
@@ -144,7 +144,7 @@
 <!-- ══════════ PAGE: ANONFESS ══════════ -->
 <div id="page-anonfess" class="app-page">
   <div class="sidebar" id="sb-anonfess">
-    <div class="sidebar-close" onclick="closeSidebar('anonfess')">&#10005;</div>
+    <div class="sidebar-close" onclick="closeSidebar('anonfess')">✕</div>
     <nav>
       <a onclick="backToHome()">HOME</a>
       <a onclick="switchFitur('anonvote')">AnonVote</a>
@@ -156,15 +156,14 @@
     <div class="room-closed-banner" id="fclosed-banner">Room telah ditutup. Tidak ada pesan baru yang bisa dikirim.</div>
     <div class="room-info-badge">Room: <span class="room-code-badge">-</span></div>
     <div class="timer-badge" id="ftimer">--:--</div>
-    <div class="hamburger" onclick="openSidebar('anonfess')">
-      <div class="hamburger-btn"><span></span><span></span><span></span></div>
-    </div>
+    <div class="hamburger" onclick="openSidebar('anonfess')"><div class="hamburger-btn"><span></span><span></span><span></span></div></div>
     <div class="admin-header">
       <div class="admin-pfp">ADMIN</div>
       <div class="admin-name">Room Master</div>
     </div>
     <div class="admin-desc" id="fess-desc-text">Kirim pesan anonim kamu di sini.</div>
     <div class="fess-list" id="fess-list"></div>
+    <!-- anon: info they can't see others' msgs -->
     <p class="anon-fess-notice" id="fess-anon-notice" style="display:none">Pesanmu sudah terkirim secara anonim.</p>
     <div class="input-container" id="fess-input-wrap">
       <input type="text" id="fess-input" placeholder="Tulis pesan anonim…" maxlength="300"/>
@@ -176,7 +175,7 @@
 <!-- ══════════ PAGE: ANONFORUM ══════════ -->
 <div id="page-anonforum" class="app-page">
   <div class="sidebar" id="sb-anonforum">
-    <div class="sidebar-close" onclick="closeSidebar('anonforum')">&#10005;</div>
+    <div class="sidebar-close" onclick="closeSidebar('anonforum')">✕</div>
     <nav>
       <a onclick="backToHome()">HOME</a>
       <a onclick="switchFitur('anonvote')">AnonVote</a>
@@ -188,9 +187,7 @@
     <div class="room-closed-banner" id="orclosed-banner">Room telah ditutup. Tidak ada komentar baru.</div>
     <div class="room-info-badge">Room: <span class="room-code-badge">-</span></div>
     <div class="timer-badge" id="ortimer">--:--</div>
-    <div class="hamburger" onclick="openSidebar('anonforum')">
-      <div class="hamburger-btn"><span></span><span></span><span></span></div>
-    </div>
+    <div class="hamburger" onclick="openSidebar('anonforum')"><div class="hamburger-btn"><span></span><span></span><span></span></div></div>
     <div class="section-title" id="forum-title-text">AnonForum</div>
     <div class="forum-list" id="forum-list"></div>
     <div class="input-container" id="forum-input-wrap">
@@ -200,20 +197,15 @@
   </div>
 </div>
 
-<!-- Lock icon (kembali ke home) -->
+<!-- Back-to-home lock icon -->
 <div class="lock-icon" id="lock-icon" style="display:none" onclick="backToHome()">
-  <svg viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="45" fill="#1a2d8a"/>
-    <rect x="30" y="45" width="40" height="30" rx="5" fill="#fff"/>
-    <path d="M38,45 L38,35 Q38,22 50,22 Q62,22 62,35 L62,45" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
-  </svg>
+  <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#1a2d8a"/><rect x="30" y="45" width="40" height="30" rx="5" fill="#fff"/><path d="M38,45 L38,35 Q38,22 50,22 Q62,22 62,35 L62,45" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/></svg>
 </div>
 
 <!-- Toast notification -->
 <div class="toast" id="toast"></div>
 
-<!-- JS eksternal — harus di bawah semua HTML -->
+<!-- ══════════ SCRIPT ══════════ -->
 <script src="script.js"></script>
-
 </body>
 </html>
